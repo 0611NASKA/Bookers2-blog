@@ -15,7 +15,15 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
+    if @book.image.attached?
+      tags = Vision.get_image_data(book_params[:image])
+    else
+      tags = ["none"]
+    end
     if @book.save
+      tags.each do |tag|
+        @book.tags.create(name: tag)
+      end
       redirect_to book_path(@book), notice: "You have created book successfully."
     else
       @books = Book.all

@@ -1,5 +1,5 @@
 <%= form_with model:book,local:true do |f| %>
-  <%= render 'layouts/errors', obj: @book %>
+  <%= render 'layouts/errors', obj: book %>
   <div class="form-group">
     <%= f.label :image %>
     <%= f.file_field :image, class: "form-control-file book_image", accept: 'image/*' %>
