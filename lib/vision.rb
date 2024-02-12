@@ -19,7 +19,8 @@ module Vision
           },
           features: [
             {
-              type: 'LABEL_DETECTION'
+              type: 'LABEL_DETECTION',
+              maxResults: 3
             }
           ]
         }]
@@ -33,6 +34,10 @@ module Vision
       request['Content-Type'] = 'application/json'
       response = https.request(request, params)
       response_body = JSON.parse(response.body)
+
+      # APIレスポンスをログに出力
+      Rails.logger.debug "API response: #{response_body}"
+
       # APIレスポンス出力
       if (error = response_body['responses'][0]['error']).present?
         raise error['message']

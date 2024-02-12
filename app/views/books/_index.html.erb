@@ -5,6 +5,7 @@
       <th>Title</th>
       <th>Opinion</th>
       <th>Tag</th>
+      <th>感情分析スコア</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -22,6 +23,7 @@
             <span class="label"><%= tag.name %></span>
           <% end %>
         </td>
+        <td><%= book.score %></td>
         <td id="favorite_buttons_<%= book.id %>">
           <%= render "favorites/favorite", book: book %>
         </td>
